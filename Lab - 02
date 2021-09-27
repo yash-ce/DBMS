@@ -1,0 +1,101 @@
+-- display employee name, job, deptno. of those employees whose job is clerk
+select * from emp;
+select ename, job, deptno from emp where job = 'CLERK'; 
+
+
+-- write a query to display employeee name job deptno. higher date of those employee who joined on first of may 1981
+-- date  format in oracle => DD-MON-YYYY
+select ename, job, deptno, hiredate from emp where hiredate = '01-MAY-1981';
+
+
+-- Display employee name sal of those employeee whose sal is less than equal to commision
+
+select ename, sal, comm from emp where sal <= comm;
+
+-- diplay employeee name salary of those employees whose salary is between 1000 and 1500
+
+select ename, sal from emp where sal >= 1000 and sal <= 1500;
+-- for in range use between and operator as shown below
+select ename, sal from emp where sal between 1000 and 1500;
+
+--Display  name, sal,mgrno for those employee those are wotking for manager with id 7902, 7566, 7788  
+-- My solution
+select empno, ename, sal, mgr from emp where empno = 7902 or empno = 7566 or empno = 7788; 
+-- Mam solution
+select empno, ename, mgr from emp where mgr in (7902, 7566, 7788);
+
+
+-- Display  name of those employee whose name having a as second character
+
+
+select empno, ename from emp where ename  like '_A%';
+
+-- Display name of those employee who are not supervised by any manager 
+select ename, mgr from emp where mgr IS NULL; 
+
+-- Display employee no ename job sal whose  sal is more than 1100 an djob is clerk
+
+select empno, ename, job, sal from emp where sal > 1100 and job = 'CLERK';
+
+-- Same previous question with or operator
+
+select empno, ename, job, sal from emp where sal > 11000 or job = 'CLERK';
+
+-- Display employee name job of those employee those are not working as clerk manager and analyst
+select ename, job, sal from emp where job not in('CLERK', 'MANAGER', 'ANALYST');
+
+
+-- 
+-- ------Group functions are those function those applied on group of rows and return in single output
+-- 
+
+
+
+-- write a query to dsiplay sum of salary and avg salary of those employees whose name starting with character s
+
+select sum(sal), avg(sal) from emp where ename like 's%';
+
+
+-- write a query to display maximum and minimum higher date in qmployee 
+
+select max(hiredate), min(hiredate), max(ename), min(ename), max(sal), min(sal) from emp;
+ 
+-- write a query to display number of records present in employee table 
+-- answer
+select count(*) from emp;
+
+select count(mgr) from emp;
+
+-- write a query to count  total no. of records present in the employee tabe according to the commision
+select count(comm)  from emp;
+-- Display no. of department in employee 
+
+-- apply count with deptno.
+
+select  count(distinct deptno) from emp;
+
+
+-- write  a query to display name job sal of those employee whose job is salesman or president and salary is more than 1500
+
+select ename, job ,sal from emp where (job = 'SALESMAN' or job = 'PRESIDENT') and sal > 1500 ;
+
+
+-- 
+
+-- Creating group of data
+
+
+-- 
+
+
+-- write a query to display average saary employees departmentwise or for each department
+
+select avg(sal) from emp group by deptno;
+
+
+
+--  previous question display deptno and average salary
+
+
+`
+
