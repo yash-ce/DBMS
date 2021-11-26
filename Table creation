@@ -1,0 +1,45 @@
+create table AD_ACADEMIC_SESSIONS(ID number primary key, Name varchar(20) not null);
+create table AD_DEPARTMENTS(ID number primary key, Name varchar(20) not null, Head varchar(20) not null);
+create table AD_PARENT_INFORMATION(ID number primary key, Parent1_FN varchar(20) not null, Parent1_LN varchar(20) not null, Parent2_FN varchar(20) not null, Parent2_LN varchar(20) not null);
+create table EMP(EmpID number primary key, Name varchar(20) not null, Address varchar(20) default 'delhi',age number check(age>32),deptid number, foreign key(deptid) references AD_DEPARTMENTS(ID));
+
+insert into AD_ACADEMIC_SESSIONS values(100, 'SPRING SESSION');
+insert into AD_ACADEMIC_SESSIONS values(200, 'FALL SESSION');
+insert into AD_ACADEMIC_SESSIONS values(300, 'SUMMER SESSION');
+
+select * from AD_ACADEMIC_SESSIONS;
+
+insert into AD_DEPARTMENTS values(10, 'ACCOUNTING', 'MARK SMITH');
+insert into AD_DEPARTMENTS values(20, 'BIOLOGY', 'DAVE GOLD');
+insert into AD_DEPARTMENTS values(30, 'COMPUTER SCIENCE', 'LINDA BROWN');
+insert into AD_DEPARTMENTS values(40, 'LITERATURE', 'ANITA TAYLOR');
+
+select * from AD_DEPARTMENTS;
+
+insert into AD_PARENT_INFORMATION values(600, 'NEIL', 'SMITH', 'DORIS', 'SMITH');
+insert into AD_PARENT_INFORMATION values(610, 'WILLIAM', 'BEN', 'NITA', 'BEN');
+insert into AD_PARENT_INFORMATION values(620, 'SEAN', 'TAYLOR', 'RHEA', 'TAYLOR');
+insert into AD_PARENT_INFORMATION values(630, 'DAVE', 'CARMEN', 'CATHY', 'CARMEN');
+insert into AD_PARENT_INFORMATION values(640, 'JOHN', 'AUDRY', 'JANE', 'AUDRY');
+
+select * from AD_PARENT_INFORMATION;
+
+insert into AD_ACADEMIC_SESSIONS values(400, 'SUMMER SESSION');
+insert into AD_ACADEMIC_SESSIONS values(500, 'Winter Break SESSION');
+select * from AD_ACADEMIC_SESSIONS;
+
+update AD_DEPARTMENTS set  NAME = 'CS ENG.' where NAME='COMPUTER SCIENCE';
+
+
+select * from AD_DEPARTMENTS;
+
+
+alter table AD_PARENT_INFORMATION modify Parent1_LN null;
+desc AD_PARENT_INFORMATION;
+update AD_PARENT_INFORMATION set  Parent1_LN = NULL where ID=620;
+select * from AD_PARENT_INFORMATION;
+
+
+delete from AD_ACADEMIC_SESSIONS where NAME = 'Winter Break SESSION'
+delete from AD_ACADEMIC_SESSIONS where NAME = 'SUMMER SESSION'
+select * from AD_ACADEMIC_SESSIONS;
