@@ -1,0 +1,60 @@
+select * from emp;
+select * from dept;
+
+select * from emp,dept;
+
+select ename,dname,emp.deptno from emp, dept where emp.deptno=dept.deptno and emp.deptno = 20;
+select ename, dname,emp.deptno from emp inner join dept on emp.deptno = dept.deptno;
+select * from emp natural join dept;
+
+select e.ename,d.dname,e.deptno from emp e, dept d where e.deptno=d.deptno and e.deptno = 20;
+
+-- left , right, outer join
+
+-- syntax -> select table1.col1 , table2.col2, table1.col1, table2.col2 from table left outer  join on join predicate;
+
+select * from emp right outer join dept on emp.deptno = dept.deptno;
+select * from dept;
+select * from emp;
+
+
+desc emp;
+desc dept;
+
+insert into emp values(1200, 'shivani' , 'analyst', 7688, '02-May-20', 50000, 400, 50);
+
+-- inner natural outer
+//  LEFT,  RIGHT , NATURAL,  OUTER JOIN OPEATION
+
+create table Employee(EMP_NAME varchar(20), STREET varchar(20), CITY varchar(20));
+create table FACT_WORKERS(EMP_NAME varchar(20), BRANCH varchar(20),SALARY number );
+insert into Employee values('Ram', 'Civil line', 'Mumbai');
+insert into Employee values('Shayam', 'Park street', 'Kolkata');
+insert into Employee values('Ravi', 'M.G. Street', 'delhi');
+insert into Employee values('Hari', 'Nehru nagar', 'Hyderabad');
+select * from Employee;
+
+insert into FACT_WORKERS values('Ram', 'Infosys', 20000);
+insert into FACT_WORKERS values('Shayam', 'Wipro', 20000);
+insert into FACT_WORKERS values('Kuber', 'HCL', 30000);
+insert into FACT_WORKERS values('Hari', 'TCS', 50000);
+
+
+select * from FACT_WORKERS;
+-- natural join
+select * from Employee natural join FACT_WORKERS;
+
+-- left join
+
+select * from Employee left outer join FACT_WORKERS on Employee.EMP_NAME = FACT_WORKERS.EMP_NAME;
+
+-- right join
+select * from Employee right outer join FACT_WORKERS on Employee.EMP_NAME = FACT_WORKERS.EMP_NAME;
+
+-- outer join
+
+select Employee.EMP_NAME, FACT_WORKERS.EMP_NAME from Employee, FACT_WORKERS where  Employee.EMP_NAME(+) = FACT_WORKERS.EMP_NAME;
+
+select Employee.EMP_NAME, FACT_WORKERS.EMP_NAME from Employee, FACT_WORKERS where  Employee.EMP_NAME = FACT_WORKERS.EMP_NAME(+);
+
+
